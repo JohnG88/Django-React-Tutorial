@@ -2,11 +2,17 @@ from django.db import models
 import string
 import random
 
+# code that will generate random code of ascii uppercase and turn it into a string in k length which is equal to 6
 def generate_unique_code():
     length = 6
 
     while True:
         code = ''.join(random.choices(string.ascii_uppercase, k=length))
+        # // checking if code is unique
+        if Room.objects.filter(code=code).count() == 0:
+            break
+    
+    return code
 
 
 # Create your models here.
