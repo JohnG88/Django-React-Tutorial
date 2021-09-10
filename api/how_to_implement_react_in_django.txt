@@ -1,0 +1,20 @@
+First, check to see if npm is install
+Second, open a second terminal and cd to django project name
+Third, create a new app in django
+Fourth, cd into new django app, create the static folder from frontend, and in that static file create css, frontend and image folders
+Fifth, create the templates folder in frontend, and inside create the frontend folder
+Sixth, create a src folder in frontend, and src folder create folder called components
+Seventh, in frontend directory, in terminal, type in npm init -y
+Eighth, in same termainla, type npm i webpack webpack-cli --save-dev, this line will compile everything into one javascript file 
+Tenth, in same terminal, download all babel packages, npm i @babel/core babel-loader @babel/preset-env @babel/preset-react --save-dev
+Eleventh, install react, npm i react react-dom --save-dev
+Twelfth, install materialui, npm install @material-ui/core
+Thirteenth, install another babel, npm install @babel/plugin-proposal-class-properties, it is to use async/await in javascript
+Fourteenth, npm install react-router-dom
+Fifthteenth, npm install @material-ui/icons
+
+Then, in frontend directory create a file  and call it babel.config.json(copied some code from github and placed it inside of file)
+Next, in frontend app, create a new file named webpack.config.js(copied some code from github and placed it inside of file)
+
+Then in package.json, under "scripts":, delete "test": line and in its place type, "dev": "webpack --mode development --watch", which just says we want webpack to run and run it neat in deveolpment mode and to watch it, it is used to see if there are any changes to file and will change/update when you refresh your browser
+Then below "dev", type in "build": "webpack --mode production"
