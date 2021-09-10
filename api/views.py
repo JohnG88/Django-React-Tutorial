@@ -5,6 +5,8 @@ from .models import Room
 
 # Create your views here.
 
-class RoomView(generics.CreateAPIView):
+# adding ListAPIView creates data into json into a list
+# adding  CREATEAPIView shows it in (perhaps) nested json
+class RoomView(generics.ListAPIView):
     queryset = Room.objects.all()
     serializer_class = RoomSerializer
