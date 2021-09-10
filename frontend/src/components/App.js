@@ -16,8 +16,6 @@ export default class App extends Component {
         return (
             <div>
                 <HomePage />
-                <RoomJoinPage/>
-                <CreateRoomPage />
             </div>)
     }
 }
