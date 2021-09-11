@@ -26,9 +26,10 @@ export default class App extends Component {
 
         // binding method to class
         // It seems that when working with react component classes you have to bind the button functionality with the class, have to look into it more
-        this.handleVotesChange = this.handleVotesChange.bind(this)
-        this.handleGuestCanPauseChange = this.handleGuestCanPauseChange.bind(this)
-        this.handleRoomButtonPressed = this.handleRoomButtonPressed.bind(this)
+        this.handleVotesChange = this.handleVotesChange.bind(this);
+        this.handleGuestCanPauseChange =
+            this.handleGuestCanPauseChange.bind(this);
+        this.handleRoomButtonPressed = this.handleRoomButtonPressed.bind(this);
     }
 
     //   this function will handle the setState of input field when it changes
@@ -42,11 +43,29 @@ export default class App extends Component {
         this.setState({
             // if target value ===  string of true then set to true, else set false
             guestCanPause: e.target.value === "true" ? true : false,
-        })
+        });
     }
 
     handleRoomButtonPressed() {
-        console.log(this.state)
+        // console.log(this.state)
+        const requestOptions = {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            // convert data into json and stringify it 
+            body: JSON.stringify({
+                // The keys that are stringified have to match the get requests from def post from api views.py
+                // votes_to_skip is the value of current state's votesToSkip
+                votes_to_skip: this.state.votesToSkip,
+                // guest_can_pause is the value of current state's guestCanPause
+                guest_can_pause: this.state.guestCanPause,
+            }),
+        };
+        // idk what requestOptions is
+        fetch("/api/create-room", requestOptions)
+            // take response and convert it into json 
+            .then((response) => response.json())
+            // then pass it into data
+            .then((data) => console.log(data));
     }
 
     render() {
@@ -65,7 +84,11 @@ export default class App extends Component {
                                 Guest Control of Playback State
                             </div>
                         </FormHelperText>
-                        <RadioGroup row defaultValue="true" onChange={this.handleGuestCanPauseChange}>
+                        <RadioGroup
+                            row
+                            defaultValue="true"
+                            onChange={this.handleGuestCanPauseChange}
+                        >
                             <FormControlLabel
                                 value="true"
                                 control={<Radio color="primary" />}
@@ -102,11 +125,15 @@ export default class App extends Component {
                     </FormControl>
                 </Grid>
                 <Grid item xs={12} align="center">
-                    <Button color="primary" variant="contained" onClick={this.handleRoomButtonPressed}>
+                    <Button
+                        color="primary"
+                        variant="contained"
+                        onClick={this.handleRoomButtonPressed}
+                    >
                         Create a Room
                     </Button>
                 </Grid>
-                
+
                 <Grid item xs={12} align="center">
                     <Button
                         color="secondary"
