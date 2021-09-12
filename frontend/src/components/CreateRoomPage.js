@@ -65,7 +65,9 @@ export default class App extends Component {
             // take response and convert it into json 
             .then((response) => response.json())
             // then pass it into data
-            .then((data) => console.log(data));
+            // this.props.history, react-router will read
+            // the whole line will be pushing to url in ()
+            .then((data) => this.props.history.push('/room/' + data.code));
     }
 
     render() {
